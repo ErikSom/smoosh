@@ -1,0 +1,72 @@
+{
+  "name": "@smoosh/box2d",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "description": "GPU resident PB-MPM materials and an interactive Box2D 3 sandbox",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ErikSom/smoosh.git"
+  },
+  "homepage": "https://eriksom.github.io/smoosh/",
+  "bugs": {
+    "url": "https://github.com/ErikSom/smoosh/issues"
+  },
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./domain": {
+      "types": "./dist/domain.d.ts",
+      "import": "./dist/domain.mjs"
+    },
+    "./box2d": {
+      "types": "./dist/box2d.d.ts",
+      "import": "./dist/box2d.mjs"
+    },
+    "./shaders/*": "./shaders/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/",
+    "shaders/",
+    "LICENSE",
+    "LICENSE-PBMPM.md",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:site": "node scripts/build-site.mjs",
+    "prepare": "npm run build",
+    "prepack": "npm run build",
+    "preserve": "npm run build:site",
+    "serve": "node serve.mjs",
+    "pretest": "npm run build",
+    "test": "node --test test/*.test.mjs",
+    "pretest:gpu": "npm run build:site",
+    "test:gpu": "node test/run-browser.mjs",
+    "pretest:package": "npm run build",
+    "test:package": "node --test test/package.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "box2d3-wasm": "^5.2.0"
+  },
+  "peerDependenciesMeta": {
+    "box2d3-wasm": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "box2d3-wasm": "5.2.0",
+    "tweakpane": "4.0.5"
+  },
+  "license": "MIT AND BSD-3-Clause"
+}

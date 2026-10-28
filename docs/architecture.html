@@ -1,0 +1,6 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Smoosh runtime</title><link rel="stylesheet" href="../style.css"></head><body>
+<h1>Runtime</h1><nav><a href="index.html">Get started</a><a href="api.html">API</a><a href="../testbed/">Testbed</a></nav>
+<p>Smoosh runs materials on the GPU and uses Box2D for rigid bodies. The adapter exchanges body motion and reaction impulses.</p>
+<ul><li>Defaults: liquids 120 Hz, solids 480 Hz, Box2D 60 Hz.</li><li>Limits: 128 coupled bodies, 512 fixtures and 64 sources/fills/drains.</li><li>Particle capacity depends on the GPU; each scene has a fixed limit.</li><li>WebGPU is required. This is experimental simulation for games and interactive demos.</li></ul>
+<p>For custom WASM builds, see <a href="https://github.com/ErikSom/smoosh/tree/main/integration/box2d">native integration</a>. Most projects can use the standard Box2D package.</p>
+</body></html>

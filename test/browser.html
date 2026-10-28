@@ -1,0 +1,8 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Smoosh GPU tests</title>
+<style>body{background:#101a1c;color:#b6ebd9;font:14px/1.6 ui-monospace,monospace;padding:30px}pre{white-space:pre-wrap}</style>
+<h1>Smoosh · GPU integration tests</h1><pre id="result">Compiling shaders…</pre>
+<script type="module">
+import {runBrowserTests} from './browser.mjs';
+window.smooshTestPromise=runBrowserTests(message=>document.getElementById('result').textContent=message);
+window.smooshTestPromise.then(result=>{window.smooshTestResult=result;document.getElementById('result').textContent=JSON.stringify(result,null,2);});
+</script>

@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Smoosh API</title><link rel="stylesheet" href="../style.css"></head><body>
+<h1>API</h1><nav><a href="index.html">Get started</a><a href="../examples/">Examples</a><a href="../testbed/">Testbed</a><a href="https://github.com/ErikSom/smoosh/blob/main/src/index.d.ts">Types</a></nav>
+<h2>Areas</h2><p>Areas define open simulation space. Touching or overlapping areas share flow automatically; gaps keep them separate. Use boxes, circles or polygons.</p>
+<pre><code>sim.addArea('left', { x: 1, y: 2, width: 10, height: 12 });
+sim.addArea('right', { x: 15, y: 2, width: 15, height: 12 });
+sim.addArea('channel', { x: 10, y: 7, width: 6, height: 2 });
+
+sim.domain.updateArea('channel', { enabled: false });
+sim.domain.removeArea('channel');</code></pre>
+<p>Channels and bends are just more areas. Use <code>updateArea()</code> to move, resize or toggle an area, and <code>removeArea()</code> to delete it. With <code>domainWalls: true</code>, Box2D walls follow the combined outline.</p>
+<h2>Material, sources and drains</h2><pre><code>sim.fill({ x: 2, y: 3, width: 6, height: 8 }); // initial material
+sim.pour({ type: 'circle', x: 8, y: 14, radius: 1, material: 'rubber' });
+
+const source = sim.addEmitter({ type: 'circle', x: 5, y: 16,
+  radius: 0.4, rate: 2400, velocity: [2, -1] });
+sim.addDrain({ type: 'circle', x: 28, y: 3, radius: 0.7 });
+sim.updateShape(source, { enabled: false });
+sim.removeShape(source);</code></pre>
+<p>Materials: <code>water</code>, <code>syrup</code>, <code>rubber</code>, <code>sand</code> and <code>putty</code>. Use <code>fill()</code> before stepping, <code>pour()</code> while running, and <code>erase()</code> to remove material. Source rates are particles per second.</p>
+<h2>Colour</h2><pre><code>sim.pour({ x: 12, y: 3, width: 4, height: 5, color: [1, 0.2, 0.1] });
+sim.setMaterial('syrup', { viscosity: 0.6 });
+sim.setSettings({ colorMixing: 2 }); // 0 disables liquid colour blending</code></pre>
+<p>RGB values range from 0 to 1. Liquid colours can blend; solid colours stay on their particles.</p>
+<h2>Stepping and Box2D</h2><pre><code>sim.advance(deltaSeconds);
+sim.adapter.addBody(bodyId);
+sim.adapter.invalidateGeometry(); // after changing fixtures
+sim.adapter.removeBody(bodyId);   // before destroying the body
+sim.setSettings({ hz: 120, solidHz: 480, rigidHz: 60, iterations: 5 });
+sim.step(1); // manual step</code></pre>
+<p>If your game steps Box2D itself, use <code>sim.advance(dt, { stepRigidBodies: false })</code>. Under heavy load, <code>advance()</code> may defer a frame while feedback finishes.</p>
+<h2>Reset and cleanup</h2><pre><code>sim.reset();   // clears material; keeps areas and bodies
+sim.destroy(); // after stopping your frame loop</code></pre>
+<p>You own the Box2D world and any GPU device you supply. Positions use metres, velocities use metres per second, and Y points up. Boxes use their lower-left corner; circles use their centre.</p>
+<p><a href="architecture.html">Runtime defaults and limits</a></p>
+</body></html>

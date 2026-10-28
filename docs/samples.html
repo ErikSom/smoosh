@@ -1,0 +1,13 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Smoosh samples</title><link rel="stylesheet" href="../style.css"></head><body>
+<h1>Samples</h1><nav><a href="../testbed/">Testbed</a><a href="index.html">Get started</a><a href="api.html">API</a></nav>
+<ul><li><a href="../testbed/?sample=clay-press">Clay extrusion press</a> — random colours, a full press stroke, four outlets and powered rollers.</li>
+<li><a href="../testbed/?sample=color-mixer">Colour mixer</a> — stir three streams into new colours.</li>
+<li><a href="../testbed/?sample=pistons">Pumps + waterwheel</a> — piston-driven jets turn a free wheel.</li>
+<li><a href="../testbed/?sample=compression">Water compression</a> — identical pistons push an empty cylinder and sealed water. Open <strong>Gate</strong> to release the water.</li>
+<li><a href="../testbed/?sample=mixer">Motor mixer</a> — paddles, water and 80 loose bodies.</li>
+<li><a href="../testbed/?sample=tumbler">Liquid tumbler</a> — one rotating container with 110 loose bodies.</li>
+<li><a href="../testbed/?sample=many-tumblers">Six tumblers</a> — six containers, water, syrup and 108 loose bodies.</li>
+<li><a href="../testbed/?sample=pyramids">Flooded pyramids</a> — waves and paddles disturb 90 stacked blocks.</li></ul>
+<p>The testbed opens with <strong>Pumps + waterwheel</strong>. Select scenes in <strong>Samples</strong>; copy the address bar to share a direct link such as <code>?sample=overlap</code>. Set motor speed or reverse direction in <strong>Simulation → Motors</strong>. Each scene links to its own file in <code>testbed/samples/</code>.</p>
+<p>To make a sample, copy one of those files and register it in <code>testbed/scenes.mjs</code>. The shared runner creates and destroys its Box2D world, GPU resources and joints when switching or resetting.</p>
+</body></html>
